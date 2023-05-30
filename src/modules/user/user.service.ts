@@ -47,6 +47,10 @@ export class UserService {
         throw new HttpException({ errors: ['Password or username are invalid'] }, HttpStatus.UNPROCESSABLE_ENTITY)
     }
 
+    async findById(id: number): Promise<UserEntity> {
+        return this.userRepository.findOne({where: {id}})
+    }
+
     buildUserResponse(user: UserEntity): UserResponse {
         return {
             user: {
