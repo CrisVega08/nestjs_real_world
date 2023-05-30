@@ -6,7 +6,6 @@ import { TagModule } from '@app/modules/tag/tag.module';
 import ormConfig from '@app/config/orm/ormconfig';
 import { UserModule } from '@app/modules/user/user.module';
 
-console.log(ormConfig)
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormConfig), 
