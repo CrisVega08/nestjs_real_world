@@ -9,6 +9,7 @@ import { UserEntity } from "./user.entity";
 import { JWT_SECRET } from "@app/config";
 import { UserResponse } from "./types/user.interface";
 import { LoginDto } from "./dto/login.dto";
+import { UpdateUserDto } from "./dto/updateUser.dto";
 
 @Injectable()
 export class UserService {
@@ -49,6 +50,11 @@ export class UserService {
 
     async findById(id: number): Promise<UserEntity> {
         return this.userRepository.findOne({where: {id}})
+    }
+
+    update(updateUserDto: UpdateUserDto, user: UserEntity): Promise<UserEntity> {
+        const newData = {...user, ...updateUserDto}
+        return this.userRepository.save(newData)
     }
 
     buildUserResponse(user: UserEntity): UserResponse {
